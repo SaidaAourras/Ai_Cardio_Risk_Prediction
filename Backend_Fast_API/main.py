@@ -2,16 +2,11 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get('/')
+@app.get('/get_patients')
+async def get_patients():
+    return {'message':'Liste des patients'}
 
-async def root():
-    return {'message':'hello world'}
+@app.post('/add_patient')
 
-@app.post('/')
-
-async def post():
-    return {'message':'hello post'}
-
-@app.put('/', description='hello')
-async def put():
-    return {'message':'put'}
+async def add_patient():
+    return {'message':'Ajouter patients'}
