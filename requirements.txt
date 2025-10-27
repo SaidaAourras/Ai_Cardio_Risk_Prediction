@@ -3,3 +3,7 @@ scikit-learn
 matplotlib
 numpy
 pytest
+fastapi
+uvicorn
+pydantic
+sqlalchemy
