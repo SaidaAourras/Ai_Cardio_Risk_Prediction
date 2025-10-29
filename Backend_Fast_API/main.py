@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 app = FastAPI()
 
+
 # lister les patients
 @app.get('/patients/get_patients/')
 async def get_patients(skip:int=0 , limit=10 ,db:Session= Depends(get_db)):
@@ -32,11 +33,15 @@ async def create_patient(patient:PatientCreate , db:Session = Depends(get_db)):
         troponin = patient.troponin ,
         impluse = patient.impluse
     )
-
+    
     db.add(db_patient)
     db.commit()
     db.refresh(db_patient)
     return db_patient
+
+# @app.get('/patients/predict_risk')
+# async def predict_risk():
+    
 
 
 
