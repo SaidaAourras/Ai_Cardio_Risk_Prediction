@@ -1,1 +1,4 @@
 venv
+Backend_Fast_API/__pycache__/
+**/__pycache__/
+*.pyc
