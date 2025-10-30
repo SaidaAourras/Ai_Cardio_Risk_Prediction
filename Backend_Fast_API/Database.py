@@ -2,13 +2,17 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker 
 from pydantic import BaseModel
+# import pandas as pd
 
 
+# df = pd.read_csv('../patients.csv')
 
 DATABASE_URL = 'sqlite:///./patients.db'
 
+
 # moteur SQLAlchemy lié à cette base
 engine = create_engine(DATABASE_URL ,connect_args={"check_same_thread":False})
+# df.to_sql('patients', con=engine , index=False , if_exists='replace')
 
 # session locale pour gerer les transactions
 SessionLocal = sessionmaker(autocommit=False ,autoflush=False, bind=engine)
