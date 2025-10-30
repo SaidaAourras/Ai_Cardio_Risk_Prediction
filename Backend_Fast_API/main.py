@@ -49,12 +49,17 @@ async def predict_risk(db:Session = Depends(get_db)):
     patient = db.query(Patient).first()
 
     features_model = ['age','gender', 'pressurehight','pressurelow',  'glucose', 'kcm','troponin',  'impluse']
-
-    dict_patient = {k: v for k, v in patient.__dict__.items() if not k.startswith('_')}
     
+    
+    # chaque objet python contient des fonction __dict__
+    # renvoie dictionnaire contenant tous les attributs de l’objet patient et leurs valeurs
+    # .items() renvoie la liste des paires (clé, valeur) du dictionnaire
+      
+    dict_patient = patient.__dict__
     pd_patient = pd.DataFrame([dict_patient]).drop(columns=['status','id'], errors='ignore')
     pd_patient = pd_patient.reindex(columns=features_model)
     status = model.predict(pd_patient)
+    
     # try:
     #     status = model.predict(pd_patient)
     # except Exception as e:
