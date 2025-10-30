@@ -45,11 +45,10 @@ async def create_patient(patient:PatientCreate , db:Session = Depends(get_db)):
 
 @app.get('/patients/predict_risk')
 async def predict_risk(db:Session = Depends(get_db)):
+    
     model = joblib.load('../ml/model_cardio.pkl')
     patient = db.query(Patient).first()
-
     features_model = ['age','gender', 'pressurehight','pressurelow',  'glucose', 'kcm','troponin',  'impluse']
-    
     
     # chaque objet python contient des fonction __dict__
     # renvoie dictionnaire contenant tous les attributs de l’objet patient et leurs valeurs
