@@ -46,7 +46,7 @@ async def create_patient(patient:PatientCreate , db:Session = Depends(get_db)):
 @app.get('/patients/predict_risk')
 async def predict_risk(db:Session = Depends(get_db)):
     
-    model = joblib.load('../ml/model_cardio.pkl')
+    model = joblib.load('../ml/model_random_forest_cardio.pkl')
     patient = db.query(Patient).first()
     features_model = ['age','gender', 'pressurehight','pressurelow',  'glucose', 'kcm','troponin',  'impluse']
     
